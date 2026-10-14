@@ -3,223 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>0rbit — 探索宇宙</title>
+  <title>my universe website</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      background: #05050f;
-      color: #e8e8f0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* 顶部 */
-    header {
+      margin: 0;
+      background: #0a0a1a;
+      color: white;
+      font-family: -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
-      padding: 80px 20px 40px;
     }
-
-    h1 {
-      font-size: 4rem;
-      font-weight: 700;
-      letter-spacing: -2px;
-      background: linear-gradient(135deg, #7dd3fc, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .tagline {
-      margin-top: 12px;
-      font-size: 1.15rem;
-      color: #8a8aa0;
-    }
-
-    /* 3D 地球容器 */
-    #earth-container {
-      width: 100%;
-      height: 420px;
-      margin: 20px 0 60px;
-    }
-
-    /* 卡片区 */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px 60px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 28px 24px;
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(125, 211, 252, 0.4);
-      transform: translateY(-4px);
-    }
-
-    .card .icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: #e8e8f0;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: #8a8aa0;
-      line-height: 1.5;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 0.75rem;
-      color: #7dd3fc;
-      border: 1px solid rgba(125, 211, 252, 0.3);
-      padding: 3px 10px;
-      border-radius: 99px;
-    }
-
-    /* 底部 */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      color: #6a6a80;
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: #7dd3fc;
-      text-decoration: none;
-    }
-
-    footer a:hover { text-decoration: underline; }
-
-    .version {
-      margin-top: 8px;
-      font-family: monospace;
-      color: #4a4a60;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.5rem; }
-      #earth-container { height: 300px; }
-      header { padding: 50px 20px 20px; }
-    }
+    h1 { font-size: 3rem; margin: 0; }
+    p { color: #888; }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>0rbit</h1>
-    <p class="tagline">免费、互动的天文工具 · Free, interactive astronomy tools</p>
-  </header>
-
-  <div id="earth-container"></div>
-
-  <section class="cards">
-    <div class="card">
-      <div class="icon">🪐</div>
-      <h3>3D 太阳系</h3>
-      <p>用真实轨道力学，探索太阳系的每一颗行星。</p>
-      <span class="badge">Coming soon</span>
-    </div>
-    <div class="card">
-      <div class="icon">🌍</div>
-      <h3>系外行星探索</h3>
-      <p>基于 NASA 真实数据，漫游 TRAPPIST-1 等遥远星系。</p>
-      <span class="badge">Coming soon</span>
-    </div>
-    <div class="card">
-      <div class="icon">📚</div>
-      <h3>天文知识库</h3>
-      <p>用最简单的话，讲清楚宇宙里最复杂的事。</p>
-      <span class="badge">Coming soon</span>
-    </div>
-  </section>
-
-  <footer>
-    <p>Built by <a href="https://github.com/gelsn7891">gelsn7891</a> · <a href="https://github.com/gelsn7891/gelsn7891.github.io">GitHub</a></p>
-    <p class="version">v0.0.2</p>
-  </footer>
-
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
-      }
-    }
-  </script>
-  <script type="module">
-    import * as THREE from 'three';
-
-    const container = document.getElementById('earth-container');
-
-    const scene = new THREE.Scene();
-
-    const camera = new THREE.PerspectiveCamera(
-      50,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 2.8;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
-
-    const geometry = new THREE.SphereGeometry(1, 64, 64);
-    const textureLoader = new THREE.TextureLoader();
-    const earthTexture = textureLoader.load(
-      'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg'
-    );
-    const material = new THREE.MeshStandardMaterial({
-      map: earthTexture,
-      roughness: 0.8,
-      metalness: 0.1
-    });
-    const earth = new THREE.Mesh(geometry, material);
-    earth.rotation.z = 0.4;
-    scene.add(earth);
-
-    const sunLight = new THREE.DirectionalLight(0xffffff, 2.5);
-    sunLight.position.set(5, 3, 5);
-    scene.add(sunLight);
-
-    scene.add(new THREE.AmbientLight(0x404060, 1.2));
-
-    function animate() {
-      requestAnimationFrame(animate);
-      earth.rotation.y += 0.002;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    });
-  </script>
-
+  <div>
+    <h1>Welcome to My Universe</h1>
+    <p>Explore the wonders of the cosmos</p>
+  </div>
 </body>
 </html>
